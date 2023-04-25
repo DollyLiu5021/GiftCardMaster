@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Login/Register | BeiMeiCard</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/prettyPhoto.css}" rel="stylesheet">
+    <link th:href="@{/css/price-range.css}" rel="stylesheet">
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+	<link th:href="@{/css/main.css}" rel="stylesheet">
+	<link th:href="@{/css/responsive.css}" rel="stylesheet">
+    <link rel="shortcut icon" th:href="@{/images/ico/favicon.ico}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-144-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
+</head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href=""><i class="fa fa-phone"></i> +1 2136082307</a></li>
+								<li><a href=""><i class="fa fa-envelope"></i> larryleo666@gmail.com</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 clearfix">
+						<div class="logo pull-left">
+							<a th:href="@{/home}"><img th:src="@{/images/home/logo.png}" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-md-8 clearfix">
+						<div class="shop-menu clearfix pull-right">
+							<ul class="nav navbar-nav">
+								<li>
+									<a shiro:user=""><b>Welcome <span shiro:principal=""></span></b></a>
+								</li>
+								<li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
+								<li><a href="/account"><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="/your-giftcards"><i class="fa fa-star"></i> Your Giftcards</a></li>
+								<li>
+									<a shiro:guest="" href="/login"><i class="fa fa-lock"></i> Login</a>
+									<a shiro:user="" href="/logout"><i class="fa fa-lock"></i> Logout</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+	</header><!--/header-->
+	
+	<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+						<h2>Login to your account</h2>
+						<form action="/login" method="post" name="login" onsubmit="return CheckLoginFormData()">
+							<input type="text" placeholder="Username" name="username" id="loginUsername" />
+							<input type="password" placeholder="Password" name="password" id="loginPassword" />
+							<span>
+								<input type="checkbox" class="checkbox" name="rememberMe">
+								Keep me signed in
+							</span>
+							<button type="submit" class="btn btn-default">Login</button>
+						</form>
+					</div><!--/login form-->
+				</div>
+				<div class="col-sm-1">
+					<h2 class="or">OR</h2>
+				</div>
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<h2>New User Signup!</h2>
+						<form action="/register" method="post" name="register" onsubmit="return CheckRegisterFormData()">
+							<input type="text" placeholder="Username" name="username" id="registerUsername" />
+							<span id="registerUsernameTip" style="color: #4cae4c" hidden="hidden">*Username should longer than 5 and shorter than 20 without Chinese</span>
+							<input type="email" placeholder="Email Address" name="email" id="registerEmail" />
+							<span id="registerEmailTip" style="color: #4cae4c" hidden>*Email address should shorter than 45</span>
+							<input type="password" placeholder="Password" name="password" id="registerPassword" />
+							<span id="registerPasswordTip" style="color: #4cae4c" hidden>*Password should contain uppercase, lowercase, number and special character</span>
+							<button type="submit" class="btn btn-default">Signup</button>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+
+	<script th:inline="javascript" th:if="${errorMsg}!=null">
+        var errorMsg = /*[[${errorMsg}]]*/'noValue';
+        alert(errorMsg);
+	</script>
+
+	<script th:inline="javascript">
+		// RegisterUsername tips
+        document.getElementById("registerUsername").onfocus = function () {
+            document.getElementById("registerUsernameTip").removeAttribute("hidden");
+		};
+        document.getElementById("registerUsername").onblur = function () {
+            document.getElementById("registerUsernameTip").setAttribute("hidden", "hidden");
+        };
+
+        // RegisterEmail tips
+        document.getElementById("registerEmail").onfocus = function () {
+            document.getElementById("registerEmailTip").removeAttribute("hidden");
+        };
+        document.getElementById("registerEmail").onblur = function () {
+            document.getElementById("registerEmailTip").setAttribute("hidden", "hidden");
+        };
+
+        // RegisterPassword tips
+        document.getElementById("registerPassword").onfocus = function () {
+            document.getElementById("registerPasswordTip").removeAttribute("hidden");
+        };
+        document.getElementById("registerPassword").onblur = function () {
+            document.getElementById("registerPasswordTip").setAttribute("hidden", "hidden");
+        };
+	</script>
+
+    <script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/price-range.js}"></script>
+    <script th:src="@{/js/jquery.scrollUp.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/jquery.prettyPhoto.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+spring:
+  profiles:
+    active: dev
+
+server:
+  port: 8080
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+
+---
+spring:
+  profiles: dev
+  datasource:
+      url: jdbc:mysql://localhost:3306/giftcardmaster?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&allowMultiQueries=true
+      username: root
+      password: haha123
+      driverClassName: com.mysql.cj.jdbc.Driver
+
+jasypt:
+  encryptor:
+    password: san_jose
+
+logging:
+    level:
+      com.example.giftcardmaster.data.mapper: DEBUG
+
+

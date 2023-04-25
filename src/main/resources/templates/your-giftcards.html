@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Your Cards | BeiMeiCard</title>
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+	<link th:href="@{/css/prettyPhoto.css}" rel="stylesheet">
+	<link th:href="@{/css/price-range.css}" rel="stylesheet">
+	<link th:href="@{/css/animate.css}" rel="stylesheet">
+	<link th:href="@{/css/main.css}" rel="stylesheet">
+	<link th:href="@{/css/responsive.css}" rel="stylesheet">
+	<link rel="shortcut icon" th:href="@{/images/ico/favicon.ico}">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-144-precomposed.png}">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+	<link rel="apple-touch-icon-precomposed" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
+</head><!--/head-->
+
+<body>
+<header id="header"><!--header-->
+	<div class="header_top"><!--header_top-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="contactinfo">
+						<ul class="nav nav-pills">
+							<li><a href="#"><i class="fa fa-phone"></i> +1 2136082307</a></li>
+							<li><a href="#"><i class="fa fa-envelope"></i> larryleo666@gmail.com</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--/header_top-->
+
+	<div class="header-middle"><!--header-middle-->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 clearfix">
+					<div class="logo pull-left">
+						<a href="/home"><img th:src="@{/images/home/logo.png}" alt="" /></a>
+					</div>
+				</div>
+				<div class="col-md-8 clearfix">
+					<div class="shop-menu clearfix pull-right">
+						<ul class="nav navbar-nav">
+							<li>
+								<a shiro:user=""><b>Welcome <span shiro:principal=""></span></b></a>
+							</li>
+							<li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
+							<li><a href="/account"><i class="fa fa-user"></i> Account</a></li>
+							<li><a href="/your-giftcards"><i class="fa fa-star"></i> Your Giftcards</a></li>
+							<li>
+								<a shiro:guest="" href="/login"><i class="fa fa-lock"></i> Login</a>
+								<a shiro:user="" href="/logout"><i class="fa fa-lock"></i> Logout</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--/header-middle-->
+
+	<div class="header-bottom"><!--header-bottom-->
+
+	</div><!--/header-bottom-->
+</header><!--/header-->
+
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="/home">Home</a></li>
+				  <li class="active">Your Giftcards</li>
+				</ol>
+			</div>
+			<div class="table-responsive cart_info">
+				<table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+							<td>Item</td>
+							<td>Product</td>
+							<td>Value</td>
+							<td>Discount</td>
+							<td>Price You Pay</td>
+							<td>Ordered Time</td>
+							<td>Order Status</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="userOrder:${UserOrders}">
+							<td class="giftCardImage">
+								<a href=""><img style="height: 100px; width: 150px" th:src="${userOrder.imgUrl}" alt=""></a>
+							</td>
+							<td class="product">
+								<a href="" th:text="${userOrder.productName}"></a>
+								<p  th:text="'orderid#'+${userOrder.idToken}"></p>
+							</td>
+							<td class="giftCardValue">
+								<p th:text="${userOrder.originPrice}+'$'"></p>
+							</td>
+							<td class="discount">
+								<p th:text="${userOrder.discount}+'% off'"></p>
+							</td>
+							<td class="price">
+								<p th:text="${userOrder.purchasePrice}+'$'"></p>
+							</td>
+							<td class="orderedTime">
+								<p th:text="${userOrder.purchaseTime}"></p>
+							</td>
+							<td class="orderStatus">
+								<p th:text="${userOrder.status}"></p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div th:if="${UserOrders.size()==0}">
+					You have not ordered any gift card yet
+				</div>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+
+    <script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/jquery.scrollUp.min.js}"></script>
+    <script th:src="@{/js/jquery.prettyPhoto.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

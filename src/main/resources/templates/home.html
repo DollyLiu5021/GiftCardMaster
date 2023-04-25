@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home | BeiMeiCard</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/prettyPhoto.css}" rel="stylesheet">
+    <link th:href="@{/css/price-range.css}" rel="stylesheet">
+    <link th:href="@{/css/animate.css}" rel="stylesheet">
+	<link th:href="@{/css/main.css}" rel="stylesheet">
+	<link th:href="@{/css/responsive.css}" rel="stylesheet">
+    <link rel="shortcut icon" th:href="@{/images/ico/favicon.ico}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-144-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
+</head><!--/head-->
+
+<body>
+	<header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href="#"><i class="fa fa-phone"></i> +1 2136082307</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> larryleo666@gmail.com</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 clearfix">
+						<div class="logo pull-left">
+							<a href="/home"><img th:src="@{/images/home/logo.png}" alt="" /></a>
+						</div>
+					</div>
+					<div class="col-md-8 clearfix">
+						<div class="shop-menu clearfix pull-right">
+							<ul class="nav navbar-nav">
+								<li>
+									<a shiro:user=""><b>Welcome <span shiro:principal=""></span></b></a>
+								</li>
+								<li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
+								<li><a href="/account"><i class="fa fa-user"></i> Account</a></li>
+								<li><a href="/your-giftcards"><i class="fa fa-star"></i> Your Giftcards</a></li>
+								<li>
+									<a shiro:guest="" href="/login"><i class="fa fa-lock"></i> Login</a>
+									<a shiro:user="" href="/logout"><i class="fa fa-lock"></i> Logout</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+
+		<div class="header-bottom"><!--header-bottom-->
+
+		</div><!--/header-bottom-->
+	</header><!--/header-->
+
+	<section id="slider"><!--slider-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#slider-carousel" data-slide-to="1"></li>
+							<li data-target="#slider-carousel" data-slide-to="2"></li>
+						</ol>
+
+						<div class="carousel-inner">
+							<div class="item active">
+								<div class="col-sm-6">
+									<h1><span>Giftcard</span>-Master</h1>
+									<h2>100 % reliable gift card purchase</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img th:src="@{/images/sliding/alipay.png}" class="girl img-responsive" alt="" />
+								</div>
+							</div>
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>Giftcard</span>-Master</h1>
+									<h2>100 % reliable gift card purchase</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img th:src="@{/images/sliding/stripe.png}" class="girl img-responsive" alt="" />
+								</div>
+							</div>
+
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>Giftcard</span>-Master</h1>
+									<h2>100 % reliable gift card purchase</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+									<button type="button" class="btn btn-default get">Get it now</button>
+								</div>
+								<div class="col-sm-6">
+									<img th:src="@{/images/sliding/zelle.png}" class="girl img-responsive" alt="" />
+								</div>
+							</div>
+
+						</div>
+
+						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section><!--/slider-->
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2>Category</h2>
+						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+							<div th:each="category:${CategoryMap}" class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordian" th:href="'#'+${category.key}">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+											<span th:text="${category.key}"></span>
+										</a>
+									</h4>
+								</div>
+								<div th:id="${category.key}" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul>
+											<li th:each="giftCard:${CategoryMap[__${category.key}__]}">
+												<a th:text="${giftCard.giftCardName}+' '"
+												   onclick="searchForGiftCard(this)"></a>
+												<span th:text="${giftCard.id}" hidden></span>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div><!--/category-products-->
+					</div>
+				</div>
+
+				<div class="col-sm-9 padding-right">
+					<div class="features_items" th:fragment="feature_fragment"><!--features_items-->
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="search_box pull-right">
+									<input id="mainSearchBox" type="text" placeholder="Giftcard / Category" onkeypress="handleKeyPress(event)"/>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="pull-left">
+									<select class="select_box" id="searchSelect" onchange="searchBasedOnSelect()">
+										<option th:selected="${SelectValue}==0" value="0">Default Order</option>
+										<option th:selected="${SelectValue}==1" value="1">Discount First</option>
+										<option th:selected="${SelectValue}==2" value="2">Update Time</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<br />
+						<h2 class="title text-center">Feature Giftcards</h2>
+						<div th:each="giftcardProduct:${GiftCardProductList}" class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+											<img th:src="${giftcardProduct.imgUrl}" alt="" />
+											<h2 th:text="'Up to '+${giftcardProduct.levelThreeDiscount}+'% off'"></h2>
+											<p th:text="${giftcardProduct.productName}"></p>
+											<a th:href="'/giftcard/product/'+${giftcardProduct.id}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Click to Buy</a>
+										</div>
+								</div>
+							</div>
+						</div>
+					</div><!--features_items-->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script th:inline="javascript">
+        function searchForGiftCard(obj) {
+            var giftCardId = obj.nextElementSibling.innerHTML;
+            var url = '/home/search?giftCardId=' + giftCardId;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (data) {
+                    $(".features_items").html(data);
+                }
+            })
+		}
+
+        function handleKeyPress(e){
+            var key=e.keyCode || e.which;
+            if (key === 13){
+                var searchStr = document.getElementById("mainSearchBox").value;
+                var url = '/home/search?searchStr=' + searchStr;
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    success: function (data) {
+                        $(".features_items").html(data);
+                    }
+                })
+            }
+        }
+
+        function searchBasedOnSelect() {
+            var select = document.getElementById("searchSelect");
+            var selectIndex = select.options[select.selectedIndex].value;
+            var url = '/home/search?selectIndex=' + selectIndex;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (data) {
+                    $(".features_items").html(data);
+                }
+            })
+		}
+	</script>
+
+    <script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/jquery.scrollUp.min.js}"></script>
+	<script th:src="@{/js/price-range.js}"></script>
+    <script th:src="@{/js/price-range.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

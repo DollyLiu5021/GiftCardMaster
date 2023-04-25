@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Account | BeiMeiCard</title>
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
+	<link th:href="@{/css/prettyPhoto.css}" rel="stylesheet">
+	<link th:href="@{/css/price-range.css}" rel="stylesheet">
+	<link th:href="@{/css/animate.css}" rel="stylesheet">
+	<link th:href="@{/css/main.css}" rel="stylesheet">
+	<link th:href="@{/css/responsive.css}" rel="stylesheet">
+	<link rel="shortcut icon" th:href="@{/images/ico/favicon.ico}">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" th:href="@{/images/ico/apple-touch-icon-144-precomposed.png}">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" th:href="@{/images/ico/apple-touch-icon-114-precomposed.png}">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" th:href="@{/images/ico/apple-touch-icon-72-precomposed.png}">
+	<link rel="apple-touch-icon-precomposed" th:href="@{/images/ico/apple-touch-icon-57-precomposed.png}">
+</head><!--/head-->
+
+<body>
+<header id="header"><!--header-->
+	<div class="header_top"><!--header_top-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="contactinfo">
+						<ul class="nav nav-pills">
+							<li><a href="#"><i class="fa fa-phone"></i> +1 2136082307</a></li>
+							<li><a href="#"><i class="fa fa-envelope"></i> larryleo666@gmail.com</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--/header_top-->
+
+	<div class="header-middle"><!--header-middle-->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 clearfix">
+					<div class="logo pull-left">
+						<a href="/home"><img th:src="@{/images/home/logo.png}" alt="" /></a>
+					</div>
+				</div>
+				<div class="col-md-8 clearfix">
+					<div class="shop-menu clearfix pull-right">
+						<ul class="nav navbar-nav">
+							<li>
+								<a shiro:user=""><b>Welcome <span shiro:principal=""></span></b></a>
+							</li>
+							<li><a href="/home"><i class="fa fa-home"></i> Home</a></li>
+							<li><a href="/account"><i class="fa fa-user"></i> Account</a></li>
+							<li><a href="/your-giftcards"><i class="fa fa-star"></i> Your Giftcards</a></li>
+							<li>
+								<a shiro:guest="" href="/login"><i class="fa fa-lock"></i> Login</a>
+								<a shiro:user="" href="/logout"><i class="fa fa-lock"></i> Logout</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--/header-middle-->
+
+	<div class="header-bottom"><!--header-bottom-->
+
+	</div><!--/header-bottom-->
+</header><!--/header-->
+
+	<section id="cart_items">
+		<div class="container" th:fragment="main_fragment" id="main_fragment">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="/home">Home</a></li>
+				  <li class="active">Account</li>
+				</ol>
+			</div><!--/breadcrums-->
+
+			<div class="user-main-info">
+				<h2 class="heading">User Information</h2>
+			</div>
+			<div class="user-main-info-detail">
+				<p>Currently you are <b th:text="'Level '+${UserInfo.userRoleId}+' '"></b>user. Buy more to unlock higher level and get more discounts!</p>
+				<span><b>Username: </b><span th:text="${UserInfo.username}"></span></span>
+				<br />
+				<br />
+				<label>Email:
+					<input id="userEmail" class="account-input" type="email" th:value="${UserInfo.email}" />
+				</label>
+				<br />
+				<label>Phone:
+					<input id="userPhone" class="account-input" type="number" th:value="${UserInfo.phone}" />
+				</label>
+				<br />
+				<label>Input password to update:
+					<input id="userPassword" class="account-input" type="password"/>
+				</label>
+				<button class="account-btn btn btn-default" onclick="updateUserInfo()">Update</button>
+			</div>
+
+			<div class="user-main-info">
+				<h2 class="heading">Change Password</h2>
+			</div>
+			<div class="user-main-info-detail">
+				<label>Old password:
+					<input id="oldPassword" class="account-input" type="password" />
+				</label>
+				<br />
+				<label>New password:
+					<input id="newPassword" class="account-input" type="password" />
+				</label>
+				<button class="account-btn btn btn-default" onclick="updateUserPassword()">Update</button>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+	<br />
+	<br />
+	<br />
+
+	<script id="tempScript" th:inline="javascript" th:fragment="main_fragment" th:if="${Message}!=null">
+    	var msg = /*[[${Message}]]*/'noValue';
+    	alert(msg);
+	</script>
+
+	<script th:inline="javascript">
+		function updateUserInfo() {
+			var password = document.getElementById("userPassword").value;
+			var email = document.getElementById("userEmail").value;
+			var phone = document.getElementById("userPhone").value;
+
+			if (password.length === 0) {
+			    alert("Please input your password to update information");
+				return;
+			} else if (password.indexOf("#") !== -1) {
+                alert("Password contains illegal character: #");
+                return;
+            }
+
+            if (email.length === 0) {
+                alert("Email address cannot be empty");
+                return;
+            } else if (email.length > 45) {
+                alert("Email address too long");
+                return
+            } else if (email.indexOf("#") !== -1) {
+                alert("Email contains illegal character: #");
+                return;
+            }
+
+            if (phone.length > 20) {
+                alert("Phone number too long");
+                return
+            }
+
+            $.ajax({
+                url: "/user/info/update",
+                type: 'POST',
+                data: {"password" : password, "email" : email, "phone" : phone},
+                dataType: "text",
+                success: function (data) {
+                    $("#main_fragment").html(data);
+                },
+                error: function(data) {
+
+				}
+            })
+		}
+
+		function updateUserPassword() {
+            var oldPassword = document.getElementById("oldPassword").value;
+            var newPassword = document.getElementById("newPassword").value;
+
+            if (oldPassword.length === 0) {
+                alert("Please input your old password to update a new one");
+                return;
+            } else if (oldPassword.indexOf("#") !== -1) {
+                alert("Old password contains illegal character: #");
+                return;
+            }
+
+            var pattern = /^(?![A-z0-9]+$)(?=.[^%&',;=?$\x22])(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,20}$/;
+            if (pattern.test(newPassword) === false) {
+                alert("New password should contain uppercase, lowercase, number and special character");
+                return;
+            } else if (newPassword.indexOf("#") !== -1) {
+                alert("New password contains illegal character: #");
+                return;
+            } else if (newPassword.length < 5 || newPassword.length > 20) {
+                alert("New password should longer than 5 and shorter than 20");
+                return;
+            }
+
+
+            $.ajax({
+                url: "/user/password/update",
+                type: 'POST',
+                data: {"oldPassword" : oldPassword, "newPassword" : newPassword},
+                dataType: "text",
+                success: function (data) {
+                    $("#main_fragment").html(data);
+                },
+                error: function(data) {
+
+                }
+            })
+		}
+	</script>
+
+	<script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/jquery.scrollUp.min.js}"></script>
+	<script th:src="@{/js/jquery.prettyPhoto.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+</body>
+</html>
